@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors (LoL)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="scoreboard" class="top-left">
+            <p id="round-count">Round: 0 (Ties: 0)</p>
+            <p id="player-score">Player: 0</p>
+            <p id="computer-score">Computer: 0</p>
+            <button onclick="resetGame()">Reset</button>
+        </div>
+        <div id="info" class="top-right">
+            <p>Rules: </n>  
+            <p>Gwen: Scissors</p> 
+            <p>Malphite: Rock</p> 
+            <p>Amumu: Paper</p>     
+        </div>
+        <h1>Rock Paper Scissors (LoL)</h1>
+        <div id="game">
+            <div id="user-choice" class="choice">
+                <h2>Your Choice</h2>
+                <img src="images/malphite.jpg" alt="Malphite" onclick="userChoice('malphite')">
+                <img src="images/amumu.jpg" alt="Amumu" onclick="userChoice('amumu')">
+                <img src="images/gwen.jpg" alt="Gwen" onclick="userChoice('gwen')">
+            </div>
+            <div id="computer-choice" class="choice">
+                <h2>Computer's Choice</h2>
+                <p id="computer-choice-text"></p>
+                <img id="computer-choice-image" src="" alt="">
+            </div>
+            <div id="result">
+                <h2>Result</h2>
+                <p id="result-text"></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
