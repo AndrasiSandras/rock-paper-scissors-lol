@@ -3,8 +3,8 @@ var roundCount = 0;
 var playerScore = 0;
 var computerScore = 0;
 var tieCount = 0;
-var consecutiveWinsPlayer;
-var consecutiveWinsComputer;
+var consecutiveWinsPlayer = 1;
+var consecutiveWinsComputer = 1;
 
 function userChoice(choice)
 {
