@@ -1,3 +1,4 @@
+var choices = ["malphite", "amumu", "gwen"];
 var roundCount = 0;
 var playerScore = 0;
 var computerScore = 0;
@@ -7,7 +8,6 @@ var consecutiveWinsComputer = 1;
 
 function userChoice(choice)
 {
-    var choices = ["malphite", "amumu", "gwen"];
     var computerChoice = choices[Math.floor(Math.random() * choices.length)];
     var computerChoiceText = computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1);
     var computerChoiceImage = "images/" + computerChoice + ".jpg";
