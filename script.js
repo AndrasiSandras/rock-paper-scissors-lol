@@ -2,8 +2,8 @@ var roundCount = 0;
 var playerScore = 0;
 var computerScore = 0;
 var tieCount = 0;
-var consecutiveWinsPlayer = 0;
-var consecutiveWinsComputer = 0;
+var consecutiveWinsPlayer = 1;
+var consecutiveWinsComputer = 1;
 
 function userChoice(choice)
 {
@@ -45,7 +45,7 @@ function userChoice(choice)
         else if (consecutiveWinsPlayer == 5)
         {
             result = "Penta kill!";
-            consecutiveWinsPlayer = 1;
+            consecutiveWinsPlayer = 0;
         }
         document.getElementById('result-text').style.backgroundColor = "green";
         document.getElementById('result-text').style.color = "white";
@@ -74,7 +74,7 @@ function userChoice(choice)
         else if (consecutiveWinsComputer == 5)
         {
             result = "Enemy penta kill!";
-            consecutiveWinsComputer = 1;
+            consecutiveWinsComputer = 0;
         }
         document.getElementById('result-text').style.backgroundColor = "red";
         document.getElementById('result-text').style.color = "white";
