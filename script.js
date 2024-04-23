@@ -3,8 +3,8 @@ var roundCount = 0;
 var playerScore = 0;
 var computerScore = 0;
 var tieCount = 0;
-var consecutiveWinsPlayer = 1;
-var consecutiveWinsComputer = 1;
+var consecutiveWinsPlayer = 0;
+var consecutiveWinsComputer = 0;
 
 function userChoice(choice)
 {
@@ -13,74 +13,25 @@ function userChoice(choice)
     var computerChoiceImage = "images/" + computerChoice + ".jpg";
     document.getElementById('computer-choice-text').innerHTML = "Computer's choice: " + computerChoiceText;
     document.getElementById('computer-choice-image').src = computerChoiceImage;
-    
     var result = "";
-    if (choice === computerChoice) 
+
+    if (choice === computerChoice)
     {
         result = "It's a tie!";
         document.getElementById('result-text').style.backgroundColor = "yellow";
         document.getElementById('result-text').style.color = "black";
         tieCount++;
-        consecutiveWinsComputer = 1;
-        consecutiveWinsPlayer = 1;
+        consecutiveWinsComputer = 0;
+        consecutiveWinsPlayer = 0;
     }
-    else if ((choice === "malphite" && computerChoice === "gwen") || (choice === "amumu" && computerChoice === "malphite") || (choice === "gwen" && computerChoice === "amumu")) 
+
+    else if ((choice === "malphite" && computerChoice === "gwen") || (choice === "amumu" && computerChoice === "malphite") || (choice === "gwen" && computerChoice === "amumu"))
     {
-        if (consecutiveWinsPlayer <= 1)
-        {
-            result = "You win!";
-        }
-        else if (consecutiveWinsPlayer == 2)
-        {
-            result = "Double kill!";
-        }
-        else if (consecutiveWinsPlayer == 3)
-        {
-            result = "Triple kill!";
-        }
-        else if (consecutiveWinsPlayer == 4)
-        {
-            result = "Quadra kill!";
-        }
-        else if (consecutiveWinsPlayer == 5)
-        {
-            result = "Penta kill!";
-            consecutiveWinsPlayer = 0;
-        }
-        document.getElementById('result-text').style.backgroundColor = "green";
-        document.getElementById('result-text').style.color = "white";
-        playerScore++;
-        consecutiveWinsPlayer++;
-        consecutiveWinsComputer = 1;
-    } 
-    else 
+        result = playerKillCounter();
+    }
+    else
     {
-        if (consecutiveWinsComputer <= 1)
-        {
-            result = "Enemy wins!";
-        }
-        else if (consecutiveWinsComputer == 2)
-        {
-            result = "Enemy double kill!";
-        }
-        else if (consecutiveWinsComputer == 3)
-        {
-            result = "Enemy triple kill!";
-        }
-        else if (consecutiveWinsComputer == 4)
-        {
-            result = "Enemy quadra kill!";
-        }
-        else if (consecutiveWinsComputer == 5)
-        {
-            result = "Enemy penta kill!";
-            consecutiveWinsComputer = 0;
-        }
-        document.getElementById('result-text').style.backgroundColor = "red";
-        document.getElementById('result-text').style.color = "white";
-        computerScore++;
-        consecutiveWinsComputer++;
-        consecutiveWinsPlayer = 1;
+        result = computerKillCounter();
     }
 
     roundCount++;
@@ -88,6 +39,52 @@ function userChoice(choice)
     document.getElementById('result-text').innerHTML = result;
     document.getElementById('player-score').innerHTML = "Player: " + playerScore;
     document.getElementById('computer-score').innerHTML = "Computer: " + computerScore;
+}
+
+function playerKillCounter()
+{
+    document.getElementById('result-text').style.backgroundColor = "green";
+    document.getElementById('result-text').style.color = "white";
+    playerScore++;
+    consecutiveWinsPlayer++;
+    consecutiveWinsComputer = 0;
+    
+    switch (consecutiveWinsPlayer) {
+        case 2:
+            return "Double kill!";
+        case 3:
+            return "Triple kill!";
+        case 4:
+            return "Quadra kill!";
+        case 5:
+            return "Penta kill!";
+            consecutiveWinsPlayer = 0;
+        default:
+            return "You win!";
+    }
+}
+
+function computerKillCounter()
+{
+    document.getElementById('result-text').style.backgroundColor = "red";
+    document.getElementById('result-text').style.color = "white";
+    computerScore++;
+    consecutiveWinsComputer++;
+    consecutiveWinsPlayer = 0;
+    
+    switch (consecutiveWinsComputer) {
+        case 2:
+            return "Enemy double kill!";
+        case 3:
+            return "Enemy triple kill!";
+        case 4:
+            return "Enemy quadra kill!";
+        case 5:
+            return "Enemy penta kill!";
+            consecutiveWinsComputer = 0;
+        default:
+            return "Enemy wins!";
+    }
 }
 
 function resetGame()
